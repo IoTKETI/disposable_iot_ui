@@ -1,0 +1,24 @@
+<div ng-attr-id="{{node.nodeId}}"
+     class="vo-node"
+     ng-class="node.nodeType"
+     layout="row">
+
+  <div id="in.{{node.nodeId}}" flex="none" layout="column" layout-align="center center" class="link-block in">
+    <div class="in-link"></div>
+  </div>
+
+  <div flex class="node-body task-node-body" layout="column" ng-class="node.nodeType">
+    <div flex class="task-node-block" ng-dblclick="fnDetailNode($event, node)">
+      <div class="node-image"></div>
+      <span flex>{{node.nodeData.name}}</span>
+      <md-button flex class="md-icon-button" aria-label="Delete" ng-click="fnDeleteNode(node)">
+        <md-icon md-font-icon="fas fa-trash-alt"></md-icon>
+      </md-button>
+    </div>
+  </div>
+
+  <div id="out.{{node.nodeId}}" flex="none" layout="column" layout-align="center center" class="link-block out">
+    <div class="out-link"></div>
+  </div>
+
+</div>

@@ -1,0 +1,17 @@
+<md-dialog id="dial-orchestration-manager" class="iotvtool dialog-orchestration" ng-init="init()">
+    <md-toolbar>
+      <div class="md-toolbar-tools">Orchestration 목록</div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-list ng-cloak>
+        <md-list-item ng-repeat="item in orchestrationList" class="noright">
+          <p>{{ item.name }}</p>
+          <md-icon md-font-icon="fas fa-edit" ng-click="edit(item)" aria-label="get item"></md-icon>
+          <md-icon md-font-icon="fas fa-trash" ng-click="delete(item)" aria-label="delete item"></md-icon>
+        </md-list-item>
+      </md-list>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" layout-align="space-around center">
+      <md-button ng-click="cancel()">닫기</md-button>
+    </md-dialog-actions>
+  </md-dialog>

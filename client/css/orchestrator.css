@@ -1,0 +1,422 @@
+
+#workspace {
+  background-image: url(../img/orchestrator/grid.png);
+  position: relative;
+  overflow: auto;
+  background-position: 36px 5px;
+  background-size: 60px 60px;
+}
+
+
+.orchestrator-workspace .vo-node {
+  position: absolute;
+  padding: 0;
+}
+
+.vo-node.vo-node .node-body.vo-node-body {
+  width: 176px;
+  height: 110px;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: #A0C245;
+}
+
+md-grid-tile:hover .node-icon-block ,
+md-grid-tile:hover .node-text-block {
+  border-width: 4px;
+}
+
+figure .vo-node-body {
+  width: 100%;
+}
+.vo-node-body .node-text-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  line-height: 36px;
+}
+.node-body.vo-node-body .node-text-block {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);  
+}
+.vo-node-body .node-text-block span,
+.node-body.vo-node-body .node-text-block h3 {
+  margin: 0px;
+  padding: 0 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.vo-node.terminal .link-block.out {
+  display: none !important;
+}
+.vo-node.start .link-block.in {
+  display: none !important;
+}
+
+
+.vo-node.task-node .node-body.task-node-body {
+  width: 50px;
+  height: 50px;
+
+  position: relative;
+}
+
+.node-image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 60px;
+  height: 60px;
+  margin: 5px 10px;
+}
+
+.task-node-body.Service .node-image {
+  background-image: url(../img/orchestrator/task-cloud.png);
+}
+.task-node-body.MicroService .node-image {
+  background-image: url(../img/orchestrator/task-edge.png);
+}
+.task-node-body.Device .node-image {
+  background-image: url(../img/orchestrator/task-device.png);
+}
+
+.node-body.task-node-body .node-info {
+  position: absolute;
+  top: 82px;
+  left: -5px;
+  width: 130px;
+  background-color: rgba(255,255,255,0.4);
+  border: 1px solid #a4a9a4;
+  border-radius: 5px;
+  display: none;
+  padding: 10px;
+}
+.node-body.task-node-body:hover .node-info {
+  display: block;
+}
+
+.vo-node-body .node-icon-block {
+  border: 2px solid white;
+  border-radius: 10px 10px 0 0;
+  height: 50px;
+
+  font-size: 24pt;
+
+  text-align: center;
+}
+.vo-node-body .node-icon-block md-icon {
+  color: white !important;
+}
+.vo-node-body .node-text-block {
+  border: 2px solid white;
+  border-radius: 0 0 10px 10px;
+  background-color: white;
+  text-align: center;
+  min-height: 60px !important;
+  padding: 10px 0;
+}
+
+
+.vo-node .link-block {
+  width: 30px;
+}
+
+.vo-node .in-link,
+.vo-node .out-link {
+  position: relative;
+  width:30px;
+  height: 30px;
+  margin: auto 0;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  display: none;
+  z-index: 1;
+}
+
+.vo-node .node-additional-info {
+  display: none;
+  z-index: 10;
+  position: absolute;
+  width: 300px;
+  margin: 0 auto;
+  min-height: 100px;
+  top: 100px;
+}
+
+.vo-node.vo .node-additional-info {
+  top: 110px;
+}
+
+.vo-node .node-additional-info .help-text {
+  font-size: 1.2em;
+  padding: 10px;
+  color: rgba(89, 89, 89, 0.85);
+}
+
+.vo-node .node-additional-info md-card-actions {
+  border-top: 1px solid rgba(89, 89, 89, 0.27);
+}
+
+
+.vo-node .node-additional-info .help-text .help-text-icon {
+  font-size: 1.5em;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+
+
+.vo-node:hover .node-additional-info {
+  display: block;
+}
+
+.node-additional-info.opened {
+  display: block !important;
+}
+
+
+.link-block.jtk-drag-active .out-link {
+  display: none !important;
+}
+.vo-node:hover .out-link,
+.out-link:hover {
+  display: block;
+}
+
+
+.link-block.jtk-drag-active .in-link {
+  display: block !important;
+}
+
+
+.link-block.jtk-drag-active.drag-hover .in-link {
+  display: block !important;
+  background-image: url('../img/orchestrator/link-in-hover.png');
+}
+
+.vo-node .in-link {
+  background-image: url('../img/orchestrator/link-in-active.png');
+}
+.vo-node .out-link {
+  background-image: url('../img/orchestrator/link-out-active.png');
+}
+
+
+.task-node-palett md-grid-tile:hover {
+  background-color: rgba(180, 180, 180, 0.28);
+}
+
+
+.orchestrator-workspace {
+  position: relative;
+  height: 100%;
+}
+
+
+#node_state1 {
+  position: absolute;
+  left: 200px;
+  top: 200px;
+}
+
+#node_state2 {
+  position: absolute;
+  left: 450px;
+  top: 300px;
+}
+
+#node_state3 {
+  position: absolute;
+  left: 200px;
+  top: 450px;
+}
+
+#node_state4 {
+  position: absolute;
+  left: 600px;
+  top: 450px;
+}
+
+
+.anchor {
+  border-radius: 6px;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  margin: 14px 4px 4px 4px;
+  border: 1px solid #6d6d6d;
+}
+
+.icon_box {
+  width: 28px;
+  height: 28px;
+  border: 1px solid white;
+  border-radius: 0px;
+  margin-top: 6px;
+  margin-left: 3px;
+}
+
+.icon_image {
+  background-size: contain;
+  width: 22px;
+  height: 22px;
+  position: relative;
+  margin: 2px;
+}
+
+.functionality  {
+  margin-left: 10px;
+  padding-left: 10px;
+  background-color: white;
+}
+
+
+
+.command  {
+  margin-bottom: 5px;
+  margin-left: 36px;
+  padding-left: 0px;
+  background-color: white;
+  border: 1px solid #5072A6;
+  width: 248px;
+  border-radius: 5px;
+  height: 35px;
+}
+
+
+.command.measuring {
+  border: 1px solid #316DA2;
+  color: #316DA2;
+}
+.command.controlling {
+  border: 1px solid #BB501A;
+  color: #BB501A;
+}
+
+
+.command_info {
+  width:  100%;
+  position: relative;
+  padding: 3px;
+  border-radius: 8px;
+}
+
+hr.inputoutput_boundary {
+  height: 3px;
+  margin: 5px;
+  clear: both;
+}
+
+
+.command-input-block,
+.command-output-block {
+  float: left;
+  width: 100%;
+}
+
+.output_name {
+  overflow:  hidden;
+  position: absolute;
+  right: 13px;
+  top: 7px;
+  background-color: white;
+  color: black;
+  padding: 2px 15px 2px 5px;
+  border-radius: 10px 5px 25px 5px;
+  display: block;
+  word-break: break-all;
+  height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 130px;
+  border: 1px solid #e4e4e4;
+}
+
+
+.anchor.output {
+  float: right;
+}
+
+
+.command-io-block {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+.input_name {
+  text-align: left;
+  overflow:  hidden;
+  position: absolute;
+  left: 14px;
+  top: 7px;
+  background-color: white;
+  color: black;
+  padding: 2px 5px 2px 15px;
+  border-radius: 5px 10px 5px 25px;
+  display: block;
+  word-break: break-all;
+  height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 130px;
+  border: 1px solid #e4e4e4;
+}
+
+.command_input.trigger-this .input_name {
+  background-color: #e4e4e4;
+  color: #6d6d6d;
+}
+.command_output.trigger-next .output_name {
+  border: 1px solid #e4e4e4;
+  background-color: #e4e4e4;
+  color: #6d6d6d;
+}
+
+.command_input:hover .input_name {
+  height: initial;
+  text-overflow: inherit;
+  border-bottom: 2px solid #5a5a5a;
+  border-right: 2px solid #5a5a5a;
+  word-wrap: initial;
+  word-break: break-all;
+  white-space: inherit;
+}
+
+.command_output:hover .output_name {
+  height: initial;
+  text-overflow: inherit;
+  border-bottom: 2px solid #5a5a5a;
+  border-left: 2px solid #5a5a5a;
+  word-wrap: initial;
+  word-break: break-all;
+  white-space: inherit;
+}
+
+
+.value-matching-table input {
+  width: 100%;
+}
+
+
+
+
+.connection-overlay {
+  width: 30px;
+  height: 20px;
+  background-color: white;
+  border-radius: 20px;
+  border: 2px solid #7caddb;
+}
+
+
+.jtk-hover .connection-overlay {
+  border: 4px solid #EB7D3C;
+}
+

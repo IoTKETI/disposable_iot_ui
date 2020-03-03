@@ -1,0 +1,8 @@
+.login-box {
+  width: 400px;
+}
+
+
+md-card.login-box md-card-content {
+  height: 210px;
+}

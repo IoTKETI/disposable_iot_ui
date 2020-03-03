@@ -1,0 +1,37 @@
+<div flex layout="row" layout-align="center center" ng-controller="authController" >
+  <div flex="50" layout="column" layout-align="center center">
+    <md-card class="login-box login-form" >
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">로그인</span>
+          <span class="md-subhead">사용자 로그인이 필요합니다.</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-card-content>
+        <div layout="column">
+          <md-input-container class="md-block">
+            <label>사용자 아이디(email)</label>
+            <input ng-model="formData.login.email" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>비밀번호</label>
+            <input ng-model="formData.login.password" type="password">
+          </md-input-container>
+        </div>
+      </md-card-content>
+
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="login()">로그인</md-button>
+        <md-button ui-sref="password-reset">비밀번호 초기화</md-button>
+      </md-card-actions>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ui-sref="signup">회원 가입</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+
+
+
+</div>

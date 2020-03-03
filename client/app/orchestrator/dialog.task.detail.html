@@ -1,0 +1,147 @@
+<md-dialog id="dial-detail" class="iotvtool dialog-detail" ng-init="init()">
+  <md-toolbar>
+    <div class="md-toolbar-tools">Task 상세정보</div>
+  </md-toolbar>
+  <div layout="column" layout-padding ng-cloak>
+    <br/>
+    <div node-data="" flex class="task-node-body" 
+      layout="row" layout-align="space-around center" ng-class="taskItem.type">
+      <div class="node-image"></div>
+    </div>
+  </div>
+  <md-dialog-content>      
+    <md-list ng-cloak>
+      <md-list-item class="list-item" layout="row">
+        <div flex="50" class="list-item-id">task id : </div>
+        <div flex class="list-item-name-id">{{taskItem.id}}</div>
+      </md-list-item>
+      <md-list-item class="list-item" layout="row">
+        <div flex="50" class="list-item-name">task name : </div>
+        <div flex class="list-item-name-value">{{taskItem.name}}</div>
+      </md-list-item>
+      <md-list-item class="list-item" layout="row">
+        <div flex="50" class="list-item-desc">task description : </div>
+        <div flex class="list-item-desc-value">{{taskItem.description}}</div>
+      </md-list-item>
+      <!--
+      <md-list-item class="list-item" layout="row">
+          <div flex="50" class="list-item-desc">category name : </div>
+          <div flex class="list-item-desc-value">{{taskItem.category.name}}</div>
+      </md-list-item>   
+      -->
+      <!-- Input Parameters -->
+      <md-list-item ng-show="taskItem.inputParameters" style="font-size: 100%" ng-click="toggle.inputParam = !toggle.inputParam">
+        <div flex="5"></div>
+        <div flex="10">
+          <md-icon flex="10" md-icon md-font-icon="fas fa-plus-square" ng-show="!toggle.inputParam"></md-icon>
+          <md-icon flex="10" md-icon md-font-icon="fas fa-minus-square" ng-show="toggle.inputParam"></md-icon>
+        </div>
+        <span>Input Parameters</span>          
+        <md-list flex ng-repeat="ip in taskItem.inputParameters" ng-show="toggle.inputParam">
+          <!-- TDB -->
+        </md-list>
+      </md-list-item>
+      <!-- Output Parameters -->
+      <md-list-item ng-show="taskItem.outputParameters" style="font-size: 100%" ng-click="toggle.outputParam = !toggle.outputParam">
+        <div flex="5">
+          <md-icon flex="10" md-icon md-font-icon="fas fa-plus-square" ng-show="!toggle.outputParam"></md-icon>
+          <md-icon flex="10" md-icon md-font-icon="fas fa-minus-square" ng-show="toggle.outputParam"></md-icon>
+        </div>
+        <span>Output Parameters</span>          
+      </md-list-item>
+      <md-list flex ng-repeat="op in taskItem.outputParameters" ng-show="toggle.outputParam">
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">data type : </div>
+          <div flex class="list-item-desc-value">{{op.dataType}}</div>
+        </md-list-item>  
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">unit category : </div>
+          <div flex class="list-item-desc-value">{{op.unitCategory}}</div>
+        </md-list-item> 
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">unit : </div>
+          <div flex class="list-item-desc-value">{{op.unit}}</div>
+        </md-list-item> 
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">minimum value : </div>
+          <div flex class="list-item-desc-value">{{op.minValue}}</div>
+        </md-list-item> 
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">maximum value : </div>
+          <div flex class="list-item-desc-value">{{op.maxValue}}</div>
+        </md-list-item>                             
+      </md-list>
+      <!-- Static Parameters -->
+      <md-list-item ng-show="taskItem.staticParameters" style="font-size: 100%" ng-click="toggle.staticParam = !toggle.staticParam">
+        <div flex="5">
+          <md-icon flex="10" md-icon md-font-icon="fas fa-plus-square" ng-show="!toggle.staticParam"></md-icon>
+          <md-icon flex="10" md-icon md-font-icon="fas fa-minus-square" ng-show="toggle.staticParam"></md-icon>
+        </div>
+        <span>Static Parameters</span>          
+      </md-list-item>
+      <md-list flex ng-repeat="sp in taskItem.staticParameters" ng-show="toggle.staticParam">
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">data type : </div>
+          <div flex class="list-item-desc-value">{{sp.dataType}}</div>
+        </md-list-item>  
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">full name : </div>
+          <div flex class="list-item-desc-value">{{sp.fullName}}</div>
+        </md-list-item> 
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">short name : </div>
+          <div flex class="list-item-desc-value">{{sp.shortName}}</div>
+        </md-list-item> 
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">value : </div>
+          <div flex class="list-item-desc-value">{{sp.value}}</div>
+        </md-list-item>                           
+      </md-list>      
+      <!-- Flexible Parameters -->
+      <md-list-item ng-show="taskItem.flexibleParameters" style="font-size: 100%" ng-click="toggle.flexibleParam = !toggle.flexibleParam">
+        <div flex="5">
+          <md-icon flex="10" md-icon md-font-icon="fas fa-plus-square" ng-show="!toggle.flexibleParam"></md-icon>
+          <md-icon flex="10" md-icon md-font-icon="fas fa-minus-square" ng-show="toggle.flexibleParam"></md-icon>
+        </div>
+        <span>Flexible Parameters</span>          
+      </md-list-item>
+      <md-list flex ng-repeat="fp in taskItem.flexibleParameters" ng-show="toggle.flexibleParam">
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">data type : </div>
+          <div flex class="list-item-desc-value">{{fp.dataType}}</div>
+        </md-list-item>  
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">full name : </div>
+          <div flex class="list-item-desc-value">{{fp.fullName}}</div>
+        </md-list-item> 
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">short name : </div>
+          <div flex class="list-item-desc-value">{{fp.shortName}}</div>
+        </md-list-item> 
+        <md-list-item class="list-item" layout="row">
+          <div flex="5"></div>
+          <div flex="45" class="list-item-desc">value : </div>
+          <!--<div flex class="list-item-desc-value">{{fp.value}}</div>-->
+          <input type="text" ng-model="fp.value">
+        </md-list-item>                           
+      </md-list>
+
+    </md-list>
+  </md-dialog-content>
+  <md-dialog-actions layout="row" layout-align="space-around center">
+    <md-button ng-click="cancel()">닫기</md-button>
+    <md-button ng-click="change(taskItem)">변경</md-button>
+  </md-dialog-actions>
+</md-dialog>

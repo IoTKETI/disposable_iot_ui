@@ -1,0 +1,123 @@
+<div flex layout="row" class="orchestrator" ng-controller="orchestratorController" ng-init="init()" md-theme="orchestrator">
+
+  <md-sidenav
+    class="md-sidenav-left orchestrator-sidenav"
+    md-component-id="annotator-sidebar"
+    md-is-locked-open="true"
+    md-whiteframe="4"
+    flle="none"
+    layout="column">
+    <!-- Task 검색 및 타이틀 -->
+    <md-content flex="none" layout="column">
+      <div class="search" layout="row">
+        <span class="icon"><i class="fas fa-search"></i></span>
+        <input type="text" id="task-searchbar" name="task-search" ng-model="taskIndex" placeholder="Task 검색">
+      </div>
+      <md-divider></md-divider>
+      <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2 flex md-truncate>Task 목록 </h2>
+            <md-button class="md-icon-button" title="목록 동기화" ng-click="getCategoryList()">
+              <md-icon md-font-icon="fas fa-sync"></md-icon>
+            </md-button>
+        </div>          
+      </md-toolbar>
+    </md-content>
+    <!-- Task 목록 -->
+    <md-content flex role="navigation" class="_md flex">      
+      <md-list ng-repeat="category in categoryList">
+        <!-- Service Category -->
+        <md-list-item style="font-size: 110%" ng-if="category.type == 'Service'" ng-click="toggle.service.id = !toggle.service.id">
+          <div flex="10">
+            <md-icon md-icon md-font-icon="fas fa-plus-square" ng-show="!toggle.service.id" aria-hidden="true"></md-icon>
+            <md-icon md-icon md-font-icon="fas fa-minus-square" ng-show="toggle.service.id" aria-hidden="true"></md-icon>
+          </div>
+          <span flex>{{category.name}}</span> 
+        </md-list-item>        
+        <md-list flex ng-repeat="service in category.services | filter:{name : (taskIndex ? taskIndex : undefined)}"
+          ng-show="toggle.service.id" ng-if="service.type == 'Service'">
+          <div orchestrator-draggable-node
+            node-type="service.type" node-data="service" style="font-size: 110%" 
+            flex class="task-node-body" layout="row" layout-align="space-around center" ng-class="service.type">
+            <div flex="5"></div>
+            <div flex="10" class="node-image"></div>                                  
+            <div flex class="node-text">{{service.name}}</div>
+          </div>
+        </md-list>
+        <!-- MicroService Category -->
+        <md-list-item style="font-size: 110%" ng-if="category.type == 'MicroService'" ng-click="toggle.microservice.id = !toggle.microservice.id">
+          <div flex="10">
+            <md-icon md-icon md-font-icon="fas fa-plus-square" ng-show="!toggle.microservice.id" aria-hidden="true"></md-icon>
+            <md-icon md-icon md-font-icon="fas fa-minus-square" ng-show="toggle.microservice.id" aria-hidden="true"></md-icon>
+          </div>
+          <span flex>{{category.name}}</span> 
+        </md-list-item>        
+        <md-list flex ng-repeat="microservice in category.microServices | filter:{name : (taskIndex ? taskIndex : undefined)}"
+          ng-show="toggle.microservice.id" ng-if="microservice.type == 'MicroService'">
+          <div orchestrator-draggable-node
+            node-type="microservice.type" node-data="microservice" style="font-size: 110%" 
+            flex class="task-node-body" layout="row" layout-align="space-around center" ng-class="microservice.type">
+            <div flex="5"></div>
+            <div flex="10" class="node-image"></div>                         
+            <div flex class="node-text">{{microservice.name}}</div>
+          </div>
+        </md-list>        
+        <!-- TASK -->
+        <md-list-item style="font-size: 110%" ng-if="category.type == 'Task'" ng-click="toggle.task.id = !toggle.task.id">
+          <div flex="10">
+            <md-icon md-icon md-font-icon="fas fa-plus-square" ng-show="!toggle.task.id" aria-hidden="true"></md-icon>
+            <md-icon md-icon md-font-icon="fas fa-minus-square" ng-show="toggle.task.id" aria-hidden="true"></md-icon>
+          </div>
+          <span flex>{{category.name}}</span> 
+        </md-list-item>        
+        <md-list flex ng-repeat="task in category.tasks | filter:{name : (taskIndex ? taskIndex : undefined)}"
+          ng-show="toggle.task.id" ng-if="category.type == 'Task'">
+          <div orchestrator-draggable-node
+            node-type="task.type" node-data="task" style="font-size: 110%" 
+            flex class="task-node-body" layout="row" layout-align="space-around center" ng-class="task.type">
+            <div flex="5"></div>
+            <div flex="10" class="node-image"></div>                         
+            <div flex class="node-text">{{task.name}}</div>
+          </div>
+        </md-list>         
+      </md-list>
+    </md-content>
+  </md-sidenav>
+  <!-- Orchestration 작업 영역 -->
+  <md-content id="workspace" flex layout="column" layout-padding style="position: relative !important">
+    <div flex orchestrator-droppable-panel id="orchestrator-workspace"
+        orchestrator-droppable-panel drop="onDropComplete"
+        class="orchestrator-workspace jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan">
+      <workflow-node node="node" orchestration-id="orchestrationId"
+          fn-delete-node="deleteNode" fn-init-node="initNode" fn-detail-node="showDetailViewDialog"
+          ng-repeat="node in orchestrationItem.nodes"/>
+    </div>
+    <!-- floating 메뉴 -->
+    <section layout="column" class="console-area" layout-align="end end">
+      <div class="pilot-menu-hotkey" ng-cloak>
+        <md-fab-speed-dial md-open="false" class="md-fling" md-direction="up">
+          <md-fab-trigger>
+            <md-button class="md-fab">
+              <i class="fas fa-bars" aria-label="floating menu"></i>
+            </md-button>
+          </md-fab-trigger>
+          <md-fab-actions>
+            <md-button class="md-fab md-raised md-mini" title="Orchestration 불러오기" ng-click="showOrchestrationManagerDialog()">
+              <i class="fas fa-download"></i>
+              <md-tooltip md-direction="left" md-autohide="false">Orchestration 불러오기</md-tooltip>
+            </md-button>
+            <md-button class="md-fab md-raised md-mini" title="Orchestration 저장하기" ng-click="showOrchestrationCreateDialog()">
+              <i class="fas fa-upload"></i>
+              <md-tooltip md-direction="left" md-autohide="false">Orchestration 저장하기</md-tooltip>
+            </md-button>
+            <md-button class="md-fab md-raised md-mini" title="Orchestration 배포" ng-click="showOrchestrationDeployDialog()">
+                <i class="fas fa-cloud"></i>
+                <md-tooltip md-direction="left" md-autohide="false">Orchestration 배포</md-tooltip>
+            </md-button>
+          </md-fab-actions>
+        </md-fab-speed-dial>
+      </div>
+    </section>
+  </md-content>
+
+</div>

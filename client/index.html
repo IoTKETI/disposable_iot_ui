@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="iotvtool">
+<head>
+  <meta charset="utf-8">
+
+	<title>초소형 IoT 테스트 및 검증용 도구</title>
+  <meta app-version="V1.0-R20191211-01" />
+
+	<meta name = "format-detection" content = "telephone=no" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/auth.css">
+  <link type="text/css" rel="stylesheet" href="css/orchestrator.css">
+
+
+  <!--  Font awesome  -->
+  <link rel='stylesheet' href='@fortawesome/fontawesome-free/css/all.css' />
+
+  <!-- jQuery, Angular.js, UI Router, Angular-material -->
+  <link rel="stylesheet" href="angular-material/angular-material.css">
+
+  <script src="jquery/dist/jquery.min.js"></script>
+  <script src="angular/angular.min.js"></script>
+  <script src="angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="angular-aria/angular-aria.js"></script>
+  <script src="angular-animate/angular-animate.min.js"></script>
+  <script src="angular-messages/angular-messages.js"></script>
+  <script src="angular-material/angular-material.js"></script>
+  <script src="angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="jwt-decode/build/jwt-decode.js"></script>
+  <script src="js-shortid/lib/js-shortid.js"></script>
+  <script src="socket.io-client/dist/socket.io.js"></script>
+  <script src="json5/dist/index.min.js"></script>
+  <!-- google map -->
+  <script src="ngmap/build/scripts/ng-map.no-dependency.js"></script>
+  <!-- Drag & drop util -->
+  <script src="ngdraggable/ngDraggable.js"></script>
+  <!-- jsplumb -->
+  <script src="jsplumb/dist/js/jsplumb.js"></script>
+  <script src="app/main.js"></script>
+  <!-- angular directives -->
+  <script src="app/common/directives.js"></script>
+  <script src="app/orchestrator/directive.workflow.node.js"></script>
+  <!-- angular services -->
+  <script src="app/common/service.notification.js"></script>
+  <script src="app/common/service.api.js"></script>
+  <script src="app/auth/auth.service.js"></script>
+  <!-- angular controllers -->
+  <script src="app/orchestrator/controller.orchestrator.js"></script>
+  <script src="app/auth/auth.controller.js"></script>
+
+
+</head>
+<body class="" ng-cloak layout="column" ng-controller="mainController" ng-init="init()">
+  <md-toolbar flex="none" class="md-hue-2" md-theme="{{currentStateTheme()}}">
+    <div class="md-toolbar-tools" layout="row">
+      <div flex layout="row">
+        <h2 md-truncate style="font-size: 25px; padding: 5px 5px 0 10px; "><span ng-bind="currentStateTitle()"></span></h2>
+      </div>
+
+      <div flex="none" layout="row">
+        <nav class="right keti-ci" >
+          <img src="img/keti.jpg" />
+        </nav>
+        <nav class="right setting-button" style="padding-top: 5px;">
+          <md-menu md-position-mode="target-right bottom" >
+            <md-button aria-label="Open menu" class="md-icon-button" ng-click="openLoginUserMenu($mdMenu, $event)">
+              <md-icon md-font-icon="fas fa-user"  style="font-size: 20pt; color: white;" ></md-icon>
+            </md-button>
+            <md-menu-content width="3">
+              <md-menu-item>
+                <h2 ng-bind="getUserName()"></h2>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="onLogout()" aria-label="Delete" >
+                  <md-icon md-font-icon="fas fa-trash-alt"></md-icon>
+                  로그아웃
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </nav>
+      </div>
+    </div>
+  </md-toolbar>
+
+  <div class="ui-base" flex layout="column">
+    <div ui-view flex layout="column"></div>
+  </div>
+</body>
+</html>

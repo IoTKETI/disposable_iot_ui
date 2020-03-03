@@ -1,0 +1,53 @@
+md-dialog.iotvtool {
+  background-color: #000000d5 !important;
+  color: #ffffff !important;
+}
+md-dialog.iotvtool md-toolbar {
+  background-color: transparent !important;
+}
+md-dialog.iotvtool md-input-container label {
+  color: #ffffffa3 !important;
+}
+md-dialog.iotvtool md-dialog-actions {
+  border-top: 1px solid #5050504d;
+  padding: 0px 8px !important;
+}
+md-dialog.iotvtool md-dialog-actions > .md-button {
+  width: 100%;
+  color: #ffffff !important;
+  margin: 0px;
+}
+md-dialog.iotvtool md-dialog-actions > .md-button:disabled {
+  color: #5a5a5a !important; 
+}
+md-dialog.iotvtool md-dialog-actions > .md-button:not([disabled]):hover {
+  background-color: #808080b0 !important;
+}
+md-dialog.iotvtool .md-toolbar-tools {
+  color: #ffffff;
+  justify-content: center;
+  border-bottom: 1px solid #5a5a5a;
+}
+md-dialiog md-list-item._md-button-wrap > div.md-button:first-child .md-list-item-inner {
+  color: #ffffff;
+}
+md-list-item._md-button-wrap > div.md-button:first-child {
+  color: #ffffff;
+}
+
+md-dialog.iotvtool .md-button[disabled] i {
+  color: #5a5a5a;
+}
+
+md-dialog.iotvtool md-list::-webkit-scrollbar{
+  width: 1px;
+  background-color: transparent
+}
+md-dialog.iotvtool md-list::-webkit-scrollbar-thumb {
+  width: 1px;
+  background-color: #3a3a3a
+}
+
+.dialog-task {
+  width: 30vw;  
+}

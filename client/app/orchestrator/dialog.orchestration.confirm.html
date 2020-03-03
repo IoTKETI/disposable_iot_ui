@@ -1,0 +1,18 @@
+<md-dialog id="dial-confirm" class="iotvtool dialog-confirm" ng-init="init()">
+    <md-toolbar>
+      <div class="md-toolbar-tools">orchestration 저장</div>
+    </md-toolbar>
+    <div layout="column" layout-padding ng-cloak>
+      <md-dialog-content layout="column" layout-padding ng-cloak>
+        <br/>
+        <md-input-container class="md-icon-float md-block">
+            <label>이름을 입력해주세요</label>
+            <input ng-model="confirm.name" type="text" placeholder="{{orchestrationItem.name}}">
+          </md-input-container>
+      </md-dialog-content>
+      <md-dialog-actions layout="row" layout-align="space-around center">
+        <md-button ng-click="cancel()">취소</md-button>
+        <md-button ng-click="save(confirm.name)">확인</md-button>
+      </md-dialog-actions>
+    </div>
+  </md-dialog>

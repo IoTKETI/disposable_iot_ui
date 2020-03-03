@@ -1,0 +1,22 @@
+{
+  "default" : {
+    "node_port" : "7583",
+    "target_url": "http://dockerhost:8181",
+    "mqtt_url": "mqtt://dockerhost",
+    "jwt": {
+      "JWT_ISSUER" : "SYNCTECHNO",
+      "ACCESS_SUBJECT" : "ACCESS",
+      "REFRESH_SUBJECT" : "REFRESH",
+      "ACCESS_EXP" : "12h",
+      "REFRESH_EXP" : "30d",
+      "SECRET": "bq2QlMUSNdYp5Kdnkn5haXyId8hgAWA6sCZPGhuUh3w74Jws6LJw27zyLQ4D7c5mje7ThYtDp+dH8mOAhBWprA=="
+    },
+    "mongo": {
+      "host": "dockerhost",
+      "port": "27017",
+      "database": "iotvtool",
+      "user": "iotvtool-user",
+      "password": "keti12#$"
+    }
+  }
+}
