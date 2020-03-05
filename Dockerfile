@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . .
 
-ENTRYPOINT ["npm", "start"]
+RUN apt-get update && apt-get install netcat-openbsd -y
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
